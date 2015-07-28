@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_account_financial_report_form_z150728" model="ir.ui.view">
+            <field name="name">view.account.financial.report.form.z150728</field>
+            <field name="model">account.financial.report</field>
+            <field name="inherit_id" ref="account.view_account_financial_report_form"/>
+            <field name="arch" type="xml">
+                <field name="style_overwrite" position="after">
+                    <field name="report_position"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>

@@ -21,6 +21,7 @@
     'description': """
 Overview:
 ---------
+- Adds "Report Position" field in Account Report definition
 - Prints Balance Sheet and Profit & Loss reports in formats designated for \
 SMEs by the Chinese government.
      """,
@@ -28,6 +29,7 @@ SMEs by the Chinese government.
     'depends': ['base','account','report_aeroo',],
     'init_xml': [],
     'data': [
+        'view/account_financial_report_view.xml',
         'wizard/bs_cn_sme_report_view.xml',
 #         'wizard/pl_cn_sme_report_view.xml',
         'report/report.xml',

@@ -73,17 +73,17 @@ class Parser(report_sxw.rml_parse):
             }
             lines.append(vals)
         
-#         for lin in lines:
-#             
-#             lin.update({'balance_cmp_0':lin['balance']})
-#             if lin['level']==3:
-#                 lin['name'] = '    ' + lin['name']
-#             elif lin['level']==4:
-#                 lin['name'] = '        ' + lin['name']
-#             elif lin['level']==5:
-#                 lin['name'] = '            ' + lin['name']
-#             elif lin['level']==6:
-#                 lin['name'] = '                ' + lin['name']
+        for lin in lines:
+             
+            lin.update({'balance_cmp_0':lin['balance']})
+            if lin['level']==3:
+                lin['name'] = '    ' + lin['name']
+            elif lin['level']==4:
+                lin['name'] = '        ' + lin['name']
+            elif lin['level']==5:
+                lin['name'] = '            ' + lin['name']
+            elif lin['level']==6:
+                lin['name'] = '                ' + lin['name']
         
 #         num = [k for k in range(len(data['month_period']))]
 #         titles =[]

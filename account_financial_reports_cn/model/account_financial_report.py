@@ -15,7 +15,14 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import model
-import wizard
-import report
-# import account
+from openerp.osv import fields, osv
+from openerp.tools.translate import _
+
+
+class account_financial_report(osv.osv):
+    _inherit = "account.financial.report"
+    _columns = {
+        'report_position': fields.char('Report Position',),
+    }
+    _sql_constraints = [
+        ('number_uniq', 'unique (report_position)','Report Position must be unique.')]

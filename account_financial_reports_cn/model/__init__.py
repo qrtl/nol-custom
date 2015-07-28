@@ -1,6 +1,6 @@
-# -*- coding: utf-8 -*-
-#    Copyright (C) Rooms For (Hong Kong) T/A OSCG 
-#    (<http://www.openerp-asia.net>)
+# -*- encoding: utf-8 -*-
+#    Copyright (C) Rooms For (Hong Kong) Limited T/A OSCG
+#    <http://www.openerp-asia.net>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -15,7 +15,6 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import model
-import wizard
-import report
-# import account
+import account_financial_report
+
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
