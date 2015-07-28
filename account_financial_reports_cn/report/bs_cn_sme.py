@@ -57,33 +57,31 @@ class Parser(report_sxw.rml_parse):
     def get_pages(self,data):
         res = []
         page = {}
-        lines = []
+        lines = {}
         account_obj = self.pool.get('account.account')
         currency_obj = self.pool.get('res.currency')
         report_obj = self.pool.get('account.financial.report')
         ids2 = report_obj._get_children_by_order(self.cr, self.uid, [data['form']['account_report_id']], context=data['form']['used_context'])
         
+        padding = {1: '',
+                   2: '  ',
+                   3: '    ',
+                   4: '      ',
+                   5: '        ',
+                   6: '          ',
+                   }
         for report in report_obj.browse(self.cr, self.uid, ids2, context=data['form']['used_context']):
-            vals = {
-                'name': report.name,
+            level = bool(report.style_overwrite) and report.style_overwrite or report.level
+            name = ''
+            name = padding[level] + report.name
+            lines[report.report_position] = {
+                'name': name,
                 'balance': report.balance * report.sign or 0.0,
                 'type': 'report',
-                'level': bool(report.style_overwrite) and report.style_overwrite or report.level,
+#                 'level': bool(report.style_overwrite) and report.style_overwrite or report.level,
                 'account_type': report.type =='sum' and 'view' or False, #used to underline the financial report balances
             }
-            lines.append(vals)
         
-        for lin in lines:
-             
-            lin.update({'balance_cmp_0':lin['balance']})
-            if lin['level']==3:
-                lin['name'] = '    ' + lin['name']
-            elif lin['level']==4:
-                lin['name'] = '        ' + lin['name']
-            elif lin['level']==5:
-                lin['name'] = '            ' + lin['name']
-            elif lin['level']==6:
-                lin['name'] = '                ' + lin['name']
         
 #         num = [k for k in range(len(data['month_period']))]
 #         titles =[]
