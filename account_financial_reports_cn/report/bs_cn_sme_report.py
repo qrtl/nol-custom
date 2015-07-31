@@ -58,7 +58,7 @@ class Parser(report_sxw.rml_parse):
         page = {}
         lines = {}
         account_obj = self.pool.get('account.account')
-        currency_obj = self.pool.get('res.currency')
+#         currency_obj = self.pool.get('res.currency')
         report_obj = self.pool.get('account.financial.report')
         used_ctx = data['form']['used_context']
         ids2 = report_obj._get_children_by_order(self.cr, self.uid, [data['form']['account_report_id']], context=used_ctx)
@@ -76,8 +76,8 @@ class Parser(report_sxw.rml_parse):
             lines[report.report_position] = {
                 'name': padding[level] + report.name,
                 'balance': report.balance * report.sign or 0.0,
-                'type': 'report',
-                'account_type': report.type =='sum' and 'view' or False, # used to underline the financial report balances
+#                 'type': 'report',
+#                 'account_type': report.type =='sum' and 'view' or False, # used to underline the financial report balances
             }
             # get the balances of the previous year end
             lines[report.report_position]['balance_prev'] = report_obj.browse(self.cr, self.uid, report.id, context=used_ctx_prev).balance * report.sign or 0.0
