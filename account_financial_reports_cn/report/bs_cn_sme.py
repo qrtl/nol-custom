@@ -23,6 +23,7 @@ import openerp.tools
 from openerp.osv import fields, osv
 # from openerp.tools import amount_to_text_en
 from openerp.tools.translate import _
+import copy
 
 
 class Parser(report_sxw.rml_parse):
@@ -53,6 +54,18 @@ class Parser(report_sxw.rml_parse):
         res['chart_account_id'] = 'chart_account_id' in data_fm and data_fm['chart_account_id'] or False
         res['state'] = 'target_move' in data_fm and data_fm['target_move'] or ''
         return res
+
+    def _get_used_ctx_prev(self, cr, uid, used_ctx, context=None):
+#         res = used_ctx
+        res = copy.deepcopy(used_ctx)
+        fiscalyear_prev = 0
+        fy_obj = self.pool.get('account.fiscalyear')
+        company_id = fy_obj.browse(cr, uid, used_ctx['fiscalyear'], context=context).company_id.id
+        fy_ids = fy_obj.search(cr, uid, [('company_id','=',company_id)], order='date_start')
+        if not fy_ids.index(used_ctx['fiscalyear']) == 0:  # to handle the case the selected year is the first year
+            fiscalyear_prev = fy_ids[fy_ids.index(used_ctx['fiscalyear']) - 1]
+        res['fiscalyear'] = fiscalyear_prev
+        return res
     
     def get_pages(self,data):
         res = []
@@ -61,7 +74,13 @@ class Parser(report_sxw.rml_parse):
         account_obj = self.pool.get('account.account')
         currency_obj = self.pool.get('res.currency')
         report_obj = self.pool.get('account.financial.report')
-        ids2 = report_obj._get_children_by_order(self.cr, self.uid, [data['form']['account_report_id']], context=data['form']['used_context'])
+        used_ctx = data['form']['used_context']
+#         ids2 = report_obj._get_children_by_order(self.cr, self.uid, [data['form']['account_report_id']], context=data['form']['used_context'])
+        ids2 = report_obj._get_children_by_order(self.cr, self.uid, [data['form']['account_report_id']], context=used_ctx)
+#         fiscalyear_prev = self._get_fiscalyear_prev(self.cr, self.uid, used_ctx['fiscalyear'])
+#         used_ctx_prev = used_ctx
+#         used_ctx_prev['fiscalyear'] = fiscalyear_prev
+        used_ctx_prev = self._get_used_ctx_prev(self.cr, self.uid, used_ctx)
         
         padding = {1: '',
                    2: '  ',
@@ -70,18 +89,28 @@ class Parser(report_sxw.rml_parse):
                    5: '        ',
                    6: '          ',
                    }
-        for report in report_obj.browse(self.cr, self.uid, ids2, context=data['form']['used_context']):
+
+        # get previous fiscalyear, create used_context_prev_fy out of used_context with only change in fiscalyear
+        
+#         for report in report_obj.browse(self.cr, self.uid, ids2, context=data['form']['used_context']):
+        for report in report_obj.browse(self.cr, self.uid, ids2, context=used_ctx):
             level = bool(report.style_overwrite) and report.style_overwrite or report.level
-            name = ''
-            name = padding[level] + report.name
+#             name = ''
+#             name = padding[level] + report.name
             lines[report.report_position] = {
-                'name': name,
+                'name': padding[level] + report.name,
                 'balance': report.balance * report.sign or 0.0,
                 'type': 'report',
 #                 'level': bool(report.style_overwrite) and report.style_overwrite or report.level,
                 'account_type': report.type =='sum' and 'view' or False, #used to underline the financial report balances
             }
-        
+            
+            # if previous fiscalyear exists, get the balances of the previous year end
+#             if fiscalyear_prev:
+            
+            rec = report_obj.browse(self.cr, self.uid, report.id, context=used_ctx_prev)
+            
+            lines[report.report_position]['balance_prev'] = report_obj.browse(self.cr, self.uid, report.id, context=used_ctx_prev).balance * report.sign or 0.0
         
 #         num = [k for k in range(len(data['month_period']))]
 #         titles =[]
