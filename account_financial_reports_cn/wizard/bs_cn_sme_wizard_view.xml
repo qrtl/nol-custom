@@ -3,7 +3,7 @@
      <data>
         <record id="bs_cn_sme_wizard_view" model="ir.ui.view">
             <field name="name">bs.cn.sme.wizard.view</field>
-            <field name="model">account.bs_cn_sme_report</field>
+            <field name="model">accounting.bs_cn_sme</field>
             <field name="arch" type="xml">
                 <form string="Balance Sheet for China SME" version="7.0">
                     <group>
@@ -12,7 +12,7 @@
                            <!-- 
                            <field name="account_report_id" domain="[('id','=',4)]" on_change="onchange_account_report_id(account_report_id, context)"/>
                             -->
-                           <field name="account_report_id" domain="[('parent_id','=',False)]" on_change="onchange_account_report_id(account_report_id, context)"/>
+                           <field name="account_report_id" domain="[('parent_id','=',False)]"/>
                         </group>
                         <group>
                            <field name="company_id"/>
@@ -31,7 +31,7 @@
 
         <record id="action_bs_cn_sme" model="ir.actions.act_window">
              <field name="name">Balance Sheet (China SME)</field>
-             <field name="res_model">account.bs_cn_sme_report</field>
+             <field name="res_model">accounting.bs_cn_sme</field>
              <field name="type">ir.actions.act_window</field>
              <field name="view_type">form</field>
              <field name="view_mode">form</field>
