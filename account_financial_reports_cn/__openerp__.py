@@ -31,7 +31,7 @@ SMEs by the Chinese government.
     'data': [
         'view/account_financial_report_view.xml',
         'wizard/bs_cn_sme_wizard_view.xml',
-#         'wizard/pl_cn_sme_report_view.xml',
+        'wizard/pl_cn_sme_wizard_view.xml',
         'report/report.xml',
     ],
     'demo_xml': [],

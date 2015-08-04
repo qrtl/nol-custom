@@ -9,9 +9,6 @@
                     <group>
                         <group>
                            <field name="chart_account_id" widget='selection' on_change="onchange_chart_id(chart_account_id, context)"/>
-                           <!-- 
-                           <field name="account_report_id" domain="[('id','=',4)]" on_change="onchange_account_report_id(account_report_id, context)"/>
-                            -->
                            <field name="account_report_id" domain="[('parent_id','=',False)]"/>
                         </group>
                         <group>

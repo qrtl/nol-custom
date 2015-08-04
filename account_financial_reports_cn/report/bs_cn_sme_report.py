@@ -35,13 +35,6 @@ class Parser(report_sxw.rml_parse):
         })
         self.context = context
     
-#     def set_context(self, objects, data, ids, report_type=None):
-#         new_ids = ids
-#         if (data['model'] == 'ir.ui.menu'):
-#             new_ids = 'chart_account_id' in data['form'] and [data['form']['chart_account_id']] or []
-#             objects = self.pool.get('account.account').browse(self.cr, self.uid, new_ids)
-#         return super(Parser, self).set_context(objects, data, new_ids, report_type=report_type)
-
     def _get_used_ctx_prev(self, cr, uid, used_ctx, context=None):
         res = copy.deepcopy(used_ctx)
         fiscalyear_prev = 9999

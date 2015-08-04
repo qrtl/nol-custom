@@ -21,6 +21,23 @@
       <field name='styles_mode'>default</field>
     </record>
 
+<!-- PL report --> <!--sakina 150801 -->
 
+    <record id='report_pl_cn_sme_print' model='ir.actions.report.xml'>
+      <field name='report_type'>aeroo</field>
+      <field name='in_format'>oo-ods</field>
+      <field name='out_format' eval="ref('report_aeroo.report_mimetypes_xls_odt')"/>
+      <field name='multi' eval='False'/>
+      <field name='name'>PL China SMEs</field>
+      <field name='report_rml'>account_financial_reports_cn/report/pl_cn_sme_report.ods</field>
+      <field name='report_name'>pl_cn_sme_report</field>
+      <field name='model'>account.move</field>
+      <field name='type'>ir.actions.report.xml</field>
+      <field name='attachment_use' eval='False'/>
+      <field name='parser_loc'>account_financial_reports_cn/report/pl_cn_sme_report.py</field>
+      <field name='tml_source'>file</field>
+      <field name='parser_state'>loc</field>
+      <field name='styles_mode'>default</field>
+    </record>
     </data>
 </openerp>

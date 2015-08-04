@@ -16,7 +16,6 @@
 
 from openerp.osv import fields, osv
 
-
 class accounting_bs_cn_sme(osv.osv_memory):
     _name = "accounting.bs_cn_sme"
     _inherit = "account.common.report"
@@ -47,8 +46,8 @@ class accounting_bs_cn_sme(osv.osv_memory):
         used_context = super(accounting_bs_cn_sme, self).check_report(cr, uid, ids, context=context)['data']['form']['used_context']
         data = {}
         data['head'] = {}
-        data['form'] = self.read(cr, uid, ids, ['account_report_id', 'fiscalyear_id', 'journal_ids', 'chart_account_id'], context=context)[0]
-        for field in ['chart_account_id', 'account_report_id', 'fiscalyear_id']:
+        data['form'] = self.read(cr, uid, ids, ['account_report_id', 'fiscalyear_id', 'journal_ids', 'chart_account_id','period_id'], context=context)[0]
+        for field in ['chart_account_id', 'account_report_id', 'fiscalyear_id','period_id']:
             if isinstance(data['form'][field], tuple):
                 data['head'][field] = data['form'][field][1]
                 data['form'][field] = data['form'][field][0]

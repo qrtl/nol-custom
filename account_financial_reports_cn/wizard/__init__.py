@@ -15,6 +15,6 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import bs_cn_sme_wizard
-# import pl_report
+import pl_cn_sme_wizard
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
