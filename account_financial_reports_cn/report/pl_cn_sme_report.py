@@ -14,47 +14,35 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import time
-# from datetime import datetime
-# from datetime import timedelta, date
+# import time
 from openerp.report import report_sxw
-# import logging
 import openerp.tools
 from openerp.osv import fields, osv
 from openerp.tools.translate import _
-import copy
+# import copy
 
 class Parser(report_sxw.rml_parse):
     def __init__(self, cr, uid, name, context):
         super(Parser, self).__init__(cr, uid, name, context)
         report_obj = self.pool.get('ir.actions.report.xml')
         self.localcontext.update({
-            'time': time,
             'get_pages': self.get_pages,
         })
         self.context = context        
         
-    def _get_used_ctx_currmonth(self, cr, uid, periodid, context=None):
-        res = copy.deepcopy(used_ctx)
-        curr_month = 9999
-        pr_obj = self.pool.get('account.period')
-        company_id = pr_obj.browse(cr, uid, used_ctx['Period'], context=context).company_id.id
-        pr_ids = pr_obj.search(cr, uid, [('company_id','=',company_id)], order='date_start')
-        if not pr_ids.index(used_ctx['period']) == 0:  
-            curr_month = pr_ids[pr_ids.index(used_ctx['period'])]
-        res['p'] = curr_month
+    def _get_used_ctx_no_period(self, cr, uid, used_ctx, context=None):
+        res = {k: v for k, v in used_ctx.items() if k != 'periods'}
         return res
   
     def get_pages(self, data):
         res = []
         page = {}
         lines = {}
-        
         account_obj = self.pool.get('account.account')
         report_obj = self.pool.get('account.financial.report')
         used_ctx = data['form']['used_context']
         ids2 = report_obj._get_children_by_order(self.cr, self.uid, [data['form']['account_report_id']], context=used_ctx)
-        used_ctx_currmonth = self._get_used_ctx_currmonth(self.cr, self.uid,used_ctx )#data['form']['period_id'])
+        used_ctx_no_period = self._get_used_ctx_no_period(self.cr, self.uid, used_ctx )
         padding = {1: '',
                    2: '  ',
                    3: '    ',
@@ -62,19 +50,20 @@ class Parser(report_sxw.rml_parse):
                    5: '        ',
                    6: '          ',
                    }        
-                # get previous fiscalyear, create used_context_prev_fy out of used_context with only change in fiscalyear
         for report in report_obj.browse(self.cr, self.uid, ids2, context=used_ctx):
             level = bool(report.style_overwrite) and report.style_overwrite or report.level
+            if 'periods' in used_ctx:
+                balance_period = report.balance * report.sign or 0.0
+            else:
+                balance_period = 0.0
             lines[report.report_position] = {
                 'name': padding[level] + report.name,
-                'balance': report.balance * report.sign or 0.0,
-#                 'type': 'report',
-#                 'account_type': report.type =='sum' and 'view' or False, # used to underline the financial report balances
+#                 'balance_period': report.balance * report.sign or 0.0,
+                'balance_period': balance_period
             }
             
-            # get the balances of the current month
-            lines[report.report_position]['balance_curr_month'] = report_obj.browse(self.cr, self.uid, report.id, context=used_ctx_currmonth).balance * report.sign or 0.0
-
+            # get the balance of the selected year
+            lines[report.report_position]['balance'] = report_obj.browse(self.cr, self.uid, report.id, context=used_ctx_no_period).balance * report.sign or 0.0
 
         page={'chart_account_id': data['head']['chart_account_id'] or '',
               'account_report_id': data['head']['account_report_id'] or '',

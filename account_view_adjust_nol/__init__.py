@@ -14,24 +14,4 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-{
-    'name': 'Multicurrency Journal Entries',
-    "license": 'AGPL-3',
-    'version': '0.5',
-    'author': 'Matthieu Choplin, Rooms For (Hong Kong) Limited T/A OSCG',
-    'category': 'Accounting',
-    'depends': [
-        "account",
-    ],
-    'summary': """""",
-    'description': """ 
-Overview:
----------
-- Automatically converts foreign currency amount into company currency \
-amount [1] in journal entry.
-- Sets currency according to selected account in account move line.
-[1] Rounding: ROUND_HALF_UP
-    """,
-    'installable': True,
-    'auto_install': False,
-}
+from . import model

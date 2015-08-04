@@ -14,7 +14,7 @@
                         <group>
                            <field name="company_id"/>
                            <field name="target_move"/>
-                           <field name="fiscalyear_id"/>
+                           <field name="fiscalyear_id" domain="[('company_id','=',company_id)]"/>
                         </group>
                     </group>
                     <footer>

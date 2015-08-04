@@ -1,5 +1,6 @@
-# -*- coding: utf-8 -*-
-#    Copyright (c) Rooms For (Hong Kong) Limited T/A OSCG. All Rights Reserved
+# -*- encoding: utf-8 -*-
+#    Copyright (C) Rooms For (Hong Kong) Limited T/A OSCG
+#    <http://www.openerp-asia.net>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -14,24 +15,6 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-{
-    'name': 'Multicurrency Journal Entries',
-    "license": 'AGPL-3',
-    'version': '0.5',
-    'author': 'Matthieu Choplin, Rooms For (Hong Kong) Limited T/A OSCG',
-    'category': 'Accounting',
-    'depends': [
-        "account",
-    ],
-    'summary': """""",
-    'description': """ 
-Overview:
----------
-- Automatically converts foreign currency amount into company currency \
-amount [1] in journal entry.
-- Sets currency according to selected account in account move line.
-[1] Rounding: ROUND_HALF_UP
-    """,
-    'installable': True,
-    'auto_install': False,
-}
+import account_move_line
+
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

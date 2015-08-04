@@ -14,8 +14,8 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#import time
 from openerp.osv import fields, osv
+
 
 class accounting_pl_cn_sme(osv.osv_memory):
     _name = "accounting.pl_cn_sme"
@@ -24,11 +24,8 @@ class accounting_pl_cn_sme(osv.osv_memory):
 
     _columns = {
         'account_report_id': fields.many2one('account.financial.report', 'Account Reports', required=True),
-
-        
         'period_id': fields.many2one('account.period', 'Account Period')
     }
-        #'period_id': fields.many2one('account.period', 'Account period', required=True), 
       
     def _get_account_report(self, cr, uid, context=None):
         # TODO deprecate this it doesnt work in web
@@ -49,13 +46,10 @@ class accounting_pl_cn_sme(osv.osv_memory):
         if context is None:
             context = {}
         used_context = super(accounting_pl_cn_sme, self).check_report(cr, uid, ids, context=context)['data']['form']['used_context']
-        #data_periods =  super(accounting_pl_cn_sme, self).check_report(cr, uid, ids, context=context)['data']['form']['periods']  #sakina
         data = {}
         data['head'] = {}
-        #data['form'] = self.read(cr, uid, ids, ['account_report_id', 'fiscalyear_id', 'journal_ids', 'chart_account_id'], context=context)[0]
-        data['form'] = self.read(cr, uid, ids, ['account_report_id', 'fiscalyear_id', 'journal_ids', 'chart_account_id','period_id'], context=context)[0]
-        #for field in ['chart_account_id', 'account_report_id', 'fiscalyear_id']:
-        for field in ['chart_account_id', 'account_report_id', 'fiscalyear_id','period_id']:
+        data['form'] = self.read(cr, uid, ids, ['account_report_id', 'fiscalyear_id', 'journal_ids', 'chart_account_id', 'period_id'], context=context)[0]
+        for field in ['chart_account_id', 'account_report_id', 'fiscalyear_id', 'period_id']:
             if isinstance(data['form'][field], tuple):
                 data['head'][field] = data['form'][field][1]
                 data['form'][field] = data['form'][field][0]
@@ -64,8 +58,9 @@ class accounting_pl_cn_sme(osv.osv_memory):
             data['head']['target_move'] = 'All Posted Entries'
         elif target_move == 'all':
             data['head']['target_move'] = 'All Entries'
+        if data['form']['period_id']:
+            used_context['periods'] = [data['form']['period_id']]
         data['form']['used_context'] = used_context
-        #data['form']['periods'] =data_periods
         
         res = {
             'type': 'ir.actions.report.xml',
@@ -73,7 +68,6 @@ class accounting_pl_cn_sme(osv.osv_memory):
             'report_name': 'pl_cn_sme_report',
             }
         return res
-       
     
 
     # this method is needed only to override the method in

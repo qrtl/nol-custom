@@ -14,7 +14,7 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from decimal import Decimal, ROUND_UP, getcontext
+from decimal import Decimal, ROUND_HALF_UP, getcontext
 from openerp import models, api
 
 
@@ -34,7 +34,7 @@ class AccountMoveLine(models.Model):
             getcontext().prec = 12
             converted_amount = "{0:.2f}".format(
                 Decimal(converted_amount).quantize(Decimal('.01'),
-                                                   rounding=ROUND_UP)
+                                                    rounding=ROUND_HALF_UP)
             )
             self.debit = converted_amount if amount_currency > 0 else 0.0
             self.credit = converted_amount if amount_currency < 0 else 0.0
