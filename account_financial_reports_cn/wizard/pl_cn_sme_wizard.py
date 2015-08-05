@@ -22,11 +22,24 @@ class accounting_pl_cn_sme(osv.osv_memory):
     _inherit = "account.common.report"
     _description = "PL Report for China SME"
 
+    def onchange_country_id(self, cr, uid, ids, country_id=False, context=None):
+        res = {}
+        if country_id:
+            partner_ids = self.pool.get('res.partner').search(cr, uid, [('country_id','=',country_id)], context=context)
+            company_ids = self.pool.get('res.company').search(cr, uid, [('partner_id','in',partner_ids)], context=context)
+            res['domain'] = {'chart_account_id': [('parent_id','=',False),('company_id','in',company_ids)]}
+        return res
+
     _columns = {
+        'country_id': fields.many2one('res.country', 'Country'),
         'account_report_id': fields.many2one('account.financial.report', 'Account Reports', required=True),
         'period_id': fields.many2one('account.period', 'Account Period')
     }
-      
+
+    def _get_country_id(self, cr, uid, context=None):
+        model, res_id = self.pool['ir.model.data'].get_object_reference(cr, uid, 'base', 'cn')
+        return res_id
+
     def _get_account_report(self, cr, uid, context=None):
         # TODO deprecate this it doesnt work in web
         menu_obj = self.pool.get('ir.ui.menu')
@@ -38,6 +51,7 @@ class accounting_pl_cn_sme(osv.osv_memory):
         return report_ids and report_ids[0] or False
 
     _defaults = {
+            'country_id': _get_country_id,
             'target_move': 'posted',
             'account_report_id': _get_account_report,
     }

@@ -8,7 +8,9 @@
                 <form string="Profit and Loss for China SME" version="7.0" >
                     <group>
                         <group>
-                           <field name="chart_account_id" widget='selection' on_change="onchange_chart_id(chart_account_id, context)"/>
+                           <field name="country_id" on_change="onchange_country_id(country_id, context)" invisible="1"/>
+                           <!-- for "chart_account_id", do NOT add widget='selection', or the domain from onchange_country_id cannot be applied -->
+                           <field name="chart_account_id" on_change="onchange_chart_id(chart_account_id, context)"/>
                            <field name="account_report_id" domain="[('parent_id','=',False)]"/>
                         </group>
                         <group>
