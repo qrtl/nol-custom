@@ -1,0 +1,235 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* account_financial_reports_cn
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-08-05 14:34+0000\n"
+"PO-Revision-Date: 2015-08-05 14:34+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: account_financial_reports_cn
+#: field:accounting.pl_cn_sme,period_id:0
+msgid "Account Period"
+msgstr "会计期间"
+
+#. module: account_financial_reports_cn
+#: model:ir.model,name:account_financial_reports_cn.model_account_financial_report
+msgid "Account Report"
+msgstr "科目报告"
+
+#. module: account_financial_reports_cn
+#: field:accounting.bs_cn_sme,account_report_id:0
+#: field:accounting.pl_cn_sme,account_report_id:0
+msgid "Account Reports"
+msgstr "财务报告"
+
+#. module: account_financial_reports_cn
+#: selection:accounting.bs_cn_sme,target_move:0
+#: selection:accounting.pl_cn_sme,target_move:0
+msgid "All Entries"
+msgstr "所有凭证"
+
+#. module: account_financial_reports_cn
+#: selection:accounting.bs_cn_sme,target_move:0
+#: selection:accounting.pl_cn_sme,target_move:0
+msgid "All Posted Entries"
+msgstr "所有已登账凭证"
+
+#. module: account_financial_reports_cn
+#: model:ir.actions.report.xml,name:account_financial_reports_cn.report_bs_cn_sme_print
+msgid "BS China SMEs"
+msgstr "中国中小企资产负债表"
+
+#. module: account_financial_reports_cn
+#: model:ir.model,name:account_financial_reports_cn.model_accounting_bs_cn_sme
+msgid "BS Report for China SME"
+msgstr "中国中小企业资产负债表"
+
+#. module: account_financial_reports_cn
+#: model:ir.actions.act_window,name:account_financial_reports_cn.action_bs_cn_sme
+#: model:ir.ui.menu,name:account_financial_reports_cn.menu_bs_cn_sme
+msgid "Balance Sheet (China SME)"
+msgstr "资产负债表(中国中小企业)"
+
+#. module: account_financial_reports_cn
+#: view:accounting.bs_cn_sme:account_financial_reports_cn.bs_cn_sme_wizard_view
+msgid "Balance Sheet for China SME"
+msgstr "中国中小企业资产负债表"
+
+#. module: account_financial_reports_cn
+#: view:accounting.bs_cn_sme:account_financial_reports_cn.bs_cn_sme_wizard_view
+#: view:accounting.pl_cn_sme:account_financial_reports_cn.pl_cn_sme_wizard_view
+msgid "Cancel"
+msgstr "取消"
+
+#. module: account_financial_reports_cn
+#: field:accounting.bs_cn_sme,chart_account_id:0
+#: field:accounting.pl_cn_sme,chart_account_id:0
+msgid "Chart of Account"
+msgstr "会计科目"
+
+#. module: account_financial_reports_cn
+#: field:accounting.bs_cn_sme,company_id:0
+#: field:accounting.pl_cn_sme,company_id:0
+msgid "Company"
+msgstr "公司"
+
+#. module: account_financial_reports_cn
+#: field:accounting.bs_cn_sme,create_uid:0
+#: field:accounting.pl_cn_sme,create_uid:0
+msgid "Created by"
+msgstr "创建人"
+
+#. module: account_financial_reports_cn
+#: field:accounting.bs_cn_sme,create_date:0
+#: field:accounting.pl_cn_sme,create_date:0
+msgid "Created on"
+msgstr "创建"
+
+#. module: account_financial_reports_cn
+#: selection:accounting.bs_cn_sme,filter:0
+#: selection:accounting.pl_cn_sme,filter:0
+msgid "Date"
+msgstr "日期"
+
+#. module: account_financial_reports_cn
+#: field:accounting.bs_cn_sme,date_to:0
+#: field:accounting.pl_cn_sme,date_to:0
+msgid "End Date"
+msgstr "结束日期"
+
+#. module: account_financial_reports_cn
+#: field:accounting.bs_cn_sme,period_to:0
+#: field:accounting.pl_cn_sme,period_to:0
+msgid "End Period"
+msgstr "结束期间"
+
+#. module: account_financial_reports_cn
+#: field:accounting.bs_cn_sme,filter:0
+#: field:accounting.pl_cn_sme,filter:0
+msgid "Filter by"
+msgstr "筛选按："
+
+#. module: account_financial_reports_cn
+#: field:accounting.bs_cn_sme,fiscalyear_id:0
+#: field:accounting.pl_cn_sme,fiscalyear_id:0
+msgid "Fiscal Year"
+msgstr "会计年度"
+
+#. module: account_financial_reports_cn
+#: field:accounting.bs_cn_sme,id:0
+#: field:accounting.pl_cn_sme,id:0
+msgid "ID"
+msgstr "编号"
+
+#. module: account_financial_reports_cn
+#: field:accounting.bs_cn_sme,journal_ids:0
+#: field:accounting.pl_cn_sme,journal_ids:0
+msgid "Journals"
+msgstr "分录"
+
+#. module: account_financial_reports_cn
+#: help:accounting.bs_cn_sme,fiscalyear_id:0
+#: help:accounting.pl_cn_sme,fiscalyear_id:0
+msgid "Keep empty for all open fiscal year"
+msgstr "留空为所有开启的会计年度"
+
+#. module: account_financial_reports_cn
+#: field:accounting.bs_cn_sme,write_uid:0
+#: field:accounting.pl_cn_sme,write_uid:0
+msgid "Last Updated by"
+msgstr "最后更新"
+
+#. module: account_financial_reports_cn
+#: field:accounting.bs_cn_sme,write_date:0
+#: field:accounting.pl_cn_sme,write_date:0
+msgid "Last Updated on"
+msgstr "最后更新"
+
+#. module: account_financial_reports_cn
+#: selection:accounting.bs_cn_sme,filter:0
+#: selection:accounting.pl_cn_sme,filter:0
+msgid "No Filters"
+msgstr "无筛选"
+
+#. module: account_financial_reports_cn
+#: model:ir.actions.report.xml,name:account_financial_reports_cn.report_pl_cn_sme_print
+msgid "PL China SMEs"
+msgstr "中国中小企利润表"
+
+#. module: account_financial_reports_cn
+#: model:ir.model,name:account_financial_reports_cn.model_accounting_pl_cn_sme
+msgid "PL Report for China SME"
+msgstr "中国中小企业利润表"
+
+#. module: account_financial_reports_cn
+#: selection:accounting.bs_cn_sme,filter:0
+#: selection:accounting.pl_cn_sme,filter:0
+msgid "Periods"
+msgstr "会计期间"
+
+#. module: account_financial_reports_cn
+#: view:accounting.bs_cn_sme:account_financial_reports_cn.bs_cn_sme_wizard_view
+#: view:accounting.pl_cn_sme:account_financial_reports_cn.pl_cn_sme_wizard_view
+msgid "Print"
+msgstr "打印"
+
+#. module: account_financial_reports_cn
+#: view:accounting.pl_cn_sme:account_financial_reports_cn.pl_cn_sme_wizard_view
+msgid "Profit and Loss for China SME"
+msgstr "中国中小企业利润表"
+
+#. module: account_financial_reports_cn
+#: model:ir.actions.act_window,name:account_financial_reports_cn.action_pl_cn_sme
+#: model:ir.ui.menu,name:account_financial_reports_cn.menu_pl_cn_sme
+msgid "Profit and Loss(China SME)"
+msgstr "利润表(中国中小企业)"
+
+#. module: account_financial_reports_cn
+#: field:account.financial.report,report_position:0
+msgid "Report Position"
+msgstr "报表中位置"
+
+#. module: account_financial_reports_cn
+#: sql_constraint:account.financial.report:0
+msgid "Report Position must be unique."
+msgstr "报表中位置必须唯一。"
+
+#. module: account_financial_reports_cn
+#: help:accounting.bs_cn_sme,chart_account_id:0
+#: help:accounting.pl_cn_sme,chart_account_id:0
+msgid "Select Charts of Accounts"
+msgstr "选择会计科目"
+
+#. module: account_financial_reports_cn
+#: field:accounting.bs_cn_sme,date_from:0
+#: field:accounting.pl_cn_sme,date_from:0
+msgid "Start Date"
+msgstr "开始日期"
+
+#. module: account_financial_reports_cn
+#: field:accounting.bs_cn_sme,period_from:0
+#: field:accounting.pl_cn_sme,period_from:0
+msgid "Start Period"
+msgstr "开始会计期间"
+
+#. module: account_financial_reports_cn
+#: field:accounting.bs_cn_sme,target_move:0
+#: field:accounting.pl_cn_sme,target_move:0
+msgid "Target Moves"
+msgstr "目标"
+
+#. module: account_financial_reports_cn
+#: view:accounting.bs_cn_sme:account_financial_reports_cn.bs_cn_sme_wizard_view
+#: view:accounting.pl_cn_sme:account_financial_reports_cn.pl_cn_sme_wizard_view
+msgid "or"
+msgstr "或"
+
