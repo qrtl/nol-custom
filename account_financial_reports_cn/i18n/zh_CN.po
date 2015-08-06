@@ -46,7 +46,8 @@ msgstr "所有已登账凭证"
 #. module: account_financial_reports_cn
 #: model:ir.actions.report.xml,name:account_financial_reports_cn.report_bs_cn_sme_print
 msgid "BS China SMEs"
-msgstr "中国中小企资产负债表"
+#msgstr "中国中小企资产负债表"
+msgstr "BS China SMEs"
 
 #. module: account_financial_reports_cn
 #: model:ir.model,name:account_financial_reports_cn.model_accounting_bs_cn_sme
@@ -163,7 +164,8 @@ msgstr "无筛选"
 #. module: account_financial_reports_cn
 #: model:ir.actions.report.xml,name:account_financial_reports_cn.report_pl_cn_sme_print
 msgid "PL China SMEs"
-msgstr "中国中小企利润表"
+#msgstr "中国中小企利润表"
+msgstr "PL China SMEs"
 
 #. module: account_financial_reports_cn
 #: model:ir.model,name:account_financial_reports_cn.model_accounting_pl_cn_sme
